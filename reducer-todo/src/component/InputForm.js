@@ -8,12 +8,18 @@ import Todo from './Todo'
 
 export const InputForm = () => {    
     const [ state, dispatch ] = useReducer(todoReducer, initialState);
-    console.log('state and dispatch',state)
+    // console.log('state and dispatch',state)
     const [newTodo, setNewTodo] = useState('');
 
     const handleSubmit = () => {
-        dispatch({ type: 'ADD_ITEM', newTodo });
+        dispatch({ type: 'ADD_ITEM', payload: newTodo });
         setNewTodo('');
+    }
+
+    const handleToggle = (id) => {
+        // const toggledCompleted = state.todo.map(item => item.id === paramId ? {...item, completed: !item.completed} : item );
+        dispatch({type: 'TOGGLE', payload: id } );
+        console.log(id);
     }
 
     return (        
@@ -29,11 +35,10 @@ export const InputForm = () => {
             </div>
             <div>
             {state.todo.map(item => (
-                 <Todo item={item} key={item.id}/>
+                 <Todo item={item} key={item.id} toggle={handleToggle}/>
              ))}
             </div>
             <button onClick={()=>{dispatch({type: 'REMOVE_ITEMS'})}}>remove</button>
         </div>
-        
     )
 }

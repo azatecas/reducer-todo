@@ -1,17 +1,16 @@
 import React from 'react';
-
 export const initialState = {
     todo:[
-    {
-    id: 111111111,
-    item: 'initial item',
-    completed: false,
-    },
-    {
-    id: 111146541,
-    item: 'second item',
-    completed: false,
-    }
+        {
+        id: 111111111,
+        item: 'initial item',
+        completed: false,
+        },
+        {
+        id: 111146541,
+        item: 'second item',
+        completed: false,
+        }
     ]
 }
 
@@ -24,15 +23,23 @@ export const todoReducer = (state, action) => {
                     ...state.todo,
                     {
                         id: Date.now(),
-                        item: action.newTodo,
+                        item: action.payload,
                         completed: false
                     }
                 ]
             }
         case 'REMOVE_ITEMS':          
             return {
-                todo: []
+                todo: state.todo.filter(item => (
+                    !item.completed                    
+                ))
             };
+        case 'TOGGLE':          
+        return {
+            todo: state.todo.map(item => (
+                    item.id === action.payload ? { ...item, completed: !item.completed } : item                
+            ))            
+        };
         default:
             return state;
     }
