@@ -28,18 +28,23 @@ export const todoReducer = (state, action) => {
                     }
                 ]
             }
+        case 'TOGGLE':          
+            return {
+            todo: state.todo.map(item => (
+                    item.id === action.payload ? { ...item, completed: !item.completed } : item                
+            ))            
+        };
         case 'REMOVE_ITEMS':          
             return {
                 todo: state.todo.filter(item => (
                     !item.completed                    
                 ))
             };
-        case 'TOGGLE':          
-        return {
-            todo: state.todo.map(item => (
-                    item.id === action.payload ? { ...item, completed: !item.completed } : item                
-            ))            
-        };
+        case 'REMOVE_ALL':          
+            return {
+                todo: []
+            };
+        
         default:
             return state;
     }

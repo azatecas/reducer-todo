@@ -2,13 +2,8 @@ import React, { useState, useReducer } from 'react';
 import { todoReducer, initialState } from '../reducer/todoReducer';
 import Todo from './Todo'
 
-// const init = () => {
-//     return {todo:[]}
-// }
-
 export const InputForm = () => {    
-    const [ state, dispatch ] = useReducer(todoReducer, initialState);
-    // console.log('state and dispatch',state)
+    const [ state, dispatch ] = useReducer(todoReducer, initialState);    
     const [newTodo, setNewTodo] = useState('');
 
     const handleSubmit = () => {
@@ -17,7 +12,6 @@ export const InputForm = () => {
     }
 
     const handleToggle = (id) => {
-        // const toggledCompleted = state.todo.map(item => item.id === paramId ? {...item, completed: !item.completed} : item );
         dispatch({type: 'TOGGLE', payload: id } );
         console.log(id);
     }
@@ -38,7 +32,8 @@ export const InputForm = () => {
                  <Todo item={item} key={item.id} toggle={handleToggle}/>
              ))}
             </div>
-            <button onClick={()=>{dispatch({type: 'REMOVE_ITEMS'})}}>remove</button>
+            <button onClick={()=>{dispatch({type: 'REMOVE_ITEMS'})}}>Remove Completed</button>
+            <button onClick={()=>{dispatch({type: 'REMOVE_ALL'})}}>Remove Everything</button>
         </div>
     )
 }
