@@ -1,15 +1,18 @@
-import React from 'react';
-import Todo from './Todo';
+// import React from 'react';
+// import Todo from './Todo';
+// import { initialState, todoReducer } from '../reducer/todoReducer';
 
-const TodoList = () => {
+// const TodoList = () => {
 
-    return (
-        <div>            
-            <Todo/>
-        </div>
+//     return (
+//         <div>            
+//             {initialState.todo.map(item => (
+//                 <Todo item={item} key={item.id}/>
+//             ))}
+//         </div>
         
-    )
+//     )
 
-}
+// }
 
-export default TodoList;
+// export default TodoList;
