@@ -15,7 +15,6 @@ export const initialState = {
     ]
 }
 
-
 export const todoReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_ITEM':
@@ -24,18 +23,17 @@ export const todoReducer = (state, action) => {
                 todo: [
                     ...state.todo,
                     {
-                        id: Date.now,
+                        id: Date.now(),
                         item: action.newTodo,
                         completed: false
-
                     }
-
                 ]
             }
-        case 'ADD_ITEM':          
-            return state;
+        case 'REMOVE_ITEMS':          
+            return {
+                todo: []
+            };
         default:
             return state;
     }
-
 }
